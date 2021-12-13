@@ -1,6 +1,6 @@
 # christmas tree
 
-this is a fork of ![sergiolepore/ChristBASHTree](https://github.com/sergiolepore/ChristBASHTree) with some improvements
+this is a fork of [sergiolepore/ChristBASHTree](https://github.com/sergiolepore/ChristBASHTree) with some improvements
 
 # preview
 
