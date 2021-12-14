@@ -10,7 +10,6 @@ MSG_LANG=en
 CENTER=$(($(tput cols)/2))
 
 function main() {
-
 	parsed_args=$(getopt -o l:Lh -l language,list-languages,help -n 'tree.sh' -- "$@")
 	getopt_exit_code=$?
 
@@ -38,11 +37,10 @@ function main() {
 	show_messages
 
 	animate
-
 }
 
 function listlangs() {
-cat << EOF
+cat <<EOF
 Code     Language
 ----     --------
 es       English (default)
@@ -98,7 +96,6 @@ function show_messages() {
 }
 
 function animate() {
-
 	color=0
 	turn_off=false
 	code_index=$(echo "$AND_LOTS_OF_CODE_IN_NEW_YEAR" | grep "$CODE" -bo | cut -d ':' -f1)
@@ -109,7 +106,6 @@ function animate() {
 	# lights and decorations
 	while :; do
 		for i in $(seq 1 36); do
-
 			if $turn_off ; then
 				tput setaf 2
 				tput bold
