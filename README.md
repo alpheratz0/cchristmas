@@ -4,7 +4,7 @@ this is a fork of [sergiolepore/ChristBASHTree](https://github.com/sergiolepore/
 
 # preview
 
-![Video](./assets/output.gif?raw=true)
+![Video](./assets/clip.gif?raw=true)
 
 # usage
 
