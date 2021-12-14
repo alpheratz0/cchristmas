@@ -2,6 +2,7 @@
 
 trap onexit 2
 
+INSTALL_PATH=$(dirname "$(realpath "$BASH_SOURCE")")
 START_LINE=2
 CROWN_HEIGHT=10
 TRUNK_HEIGHT=2
@@ -29,7 +30,7 @@ function main() {
 		esac
 	done
 
-	validate_language && source ./langs/$MSG_LANG
+	validate_language && source "$INSTALL_PATH/langs/$MSG_LANG"
 	empty_screen
 
 	show_tree_crown
@@ -49,7 +50,7 @@ EOF
 }
 
 function validate_language() {
-	if [ $(echo -n "$MSG_LANG" | wc -c) -ne 2 ] || [ ! -f "./langs/$MSG_LANG" ] ; then
+	if [ $(echo -n "$MSG_LANG" | wc -c) -ne 2 ] || [ ! -f "$INSTALL_PATH/langs/$MSG_LANG" ] ; then
 		err "language code $MSG_LANG isnt supported"
 	fi
 }
