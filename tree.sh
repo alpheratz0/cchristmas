@@ -2,7 +2,10 @@
 
 trap onexit 2
 
-INSTALL_PATH=$(dirname "$(realpath "$BASH_SOURCE")")
+MERRY_CHRISTMAS=
+AND_LOTS_OF_CODE_IN_NEW_YEAR=
+CODE=
+
 START_LINE=2
 CROWN_HEIGHT=10
 TRUNK_HEIGHT=2
@@ -11,7 +14,7 @@ MSG_LANG=en
 CENTER=$(($(tput cols)/2))
 
 function main() {
-	parsed_args=$(getopt -o l:Lh -l language,list-languages,help -n 'tree.sh' -- "$@")
+	parsed_args=$(getopt -o h -l help -n 'tree.sh' -- "$@")
 	getopt_exit_code=$?
 
 	if [ $getopt_exit_code -ne 0 ] ; then
@@ -23,14 +26,27 @@ function main() {
 	while :; do
 		case "$1" in
 			-h | --help ) show_help; exit 1 ;;
-			-L | --list-languages ) listlangs; exit ;;
-			-l | --language ) MSG_LANG="$2"; shift 2 ;;
 			-- ) shift; break ;;
 			* ) break ;;
 		esac
 	done
 
-	validate_language && source "$INSTALL_PATH/langs/$MSG_LANG"
+	# code from: https://github.com/SuperQ
+	detect_lang="$(echo "${LANG}" | cut -f1 -d.)"
+	
+	case "${detect_lang}" in
+		es_*)
+			MERRY_CHRISTMAS='FELICES FIESTAS'
+			AND_LOTS_OF_CODE_IN_NEW_YEAR="Y mucho CODIGO en $(($(date +'%Y')+1))"
+			CODE='CODIGO'
+			;;
+		*)
+			MERRY_CHRISTMAS='MERRY CHRISTMAS'
+			AND_LOTS_OF_CODE_IN_NEW_YEAR="And lots of CODE in $(($(date +'%Y')+1))"
+			CODE='CODE'	
+			;;
+	esac
+
 	empty_screen
 
 	show_tree_crown
@@ -38,21 +54,6 @@ function main() {
 	show_messages
 
 	animate
-}
-
-function listlangs() {
-cat <<EOF
-Code     Language
-----     --------
-es       English (default)
-en       Spanish
-EOF
-}
-
-function validate_language() {
-	if [ $(echo -n "$MSG_LANG" | wc -c) -ne 2 ] || [ ! -f "$INSTALL_PATH/langs/$MSG_LANG" ] ; then
-		err "language code $MSG_LANG isnt supported"
-	fi
 }
 
 function empty_screen() {
@@ -144,17 +145,13 @@ function animate() {
 	done
 }
 
-function err() {
-	printf "tree.sh: %s\n" "$@" >&2
-	exit 1
-}
-
 function show_help() {
-	echo Usage: tree.sh [ -hL ] [ -l language_code ]
+	echo Usage: tree.sh [ -h ]
 	echo Options are:
-	echo '     -l | --language                uses the specified language (english default)'
-	echo '     -L | --list-languages          list all supported languages'
 	echo '     -h | --help                    display this message and exit'
+	echo Examples:
+	echo '     LANG=en_US tree.sh'
+	echo '     LANG=es_ES tree.sh'
 }
 
 function onexit() {
