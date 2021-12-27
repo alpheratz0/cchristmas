@@ -1,4 +1,4 @@
-# christmas tree
+# tree.sh
 
 this is a fork of [sergiolepore/ChristBASHTree](https://github.com/sergiolepore/ChristBASHTree) with some improvements
 
@@ -9,8 +9,8 @@ this is a fork of [sergiolepore/ChristBASHTree](https://github.com/sergiolepore/
 # install
 
 ```sh
-git clone https://github.com/alpheratz0/christmas.git
-cd christmas
+git clone https://github.com/alpheratz0/tree.sh.git
+cd tree.sh
 sudo make install
 ```
 
