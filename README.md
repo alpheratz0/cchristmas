@@ -6,6 +6,12 @@ this is a fork of [sergiolepore/ChristBASHTree](https://github.com/sergiolepore/
 
 ![Video](./assets/clip.gif?raw=true)
 
+# running using curl
+```sh
+curl https://raw.githubusercontent.com/alpheratz0/tree.sh/master/tree.sh | \
+	LANG=es_ES bash
+```
+
 # install
 
 ```sh
