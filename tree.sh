@@ -9,7 +9,6 @@ CODE=
 START_LINE=2
 CROWN_HEIGHT=10
 TRUNK_HEIGHT=2
-MSG_LANG=en
 
 CENTER=$(($(tput cols)/2))
 
