@@ -1,0 +1,11 @@
+cchristmas
+==========
+christmas tree in c, inspired by: https://github.com/sergiolepore/ChristBASHTree
+
+build
+=====
+$ make
+
+install
+=======
+$ sudo make install
