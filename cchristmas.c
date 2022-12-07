@@ -138,7 +138,7 @@ tree_init(void)
 }
 
 static void
-tree_render_centered(void)
+tree_render(void)
 {
 	int level, light;
 	int term_width, term_height;
@@ -224,7 +224,7 @@ main(int argc, char **argv)
 
 	while (1) {
 		tree_update();
-		tree_render_centered();
+		tree_render();
 		fflush(stdout);
 		usleep(1000 * 100);
 	}
