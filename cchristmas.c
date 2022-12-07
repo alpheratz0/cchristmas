@@ -25,6 +25,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <termios.h>
+#include <time.h>
 #include <sys/ioctl.h>
 #include <string.h>
 
@@ -44,6 +45,21 @@ die(const char *fmt, ...)
 	va_end(args);
 	fputc('\n', stderr);
 	exit(1);
+}
+
+static int
+get_new_year(void)
+{
+	time_t now;
+	struct tm *tm;
+	int new_year;
+
+	now = time(NULL);
+	tm = localtime(&now);
+	new_year = (1900 + tm->tm_year) +
+		!(tm->tm_mon == 0 && tm->tm_mday == 1);
+
+	return new_year;
 }
 
 static void
@@ -138,7 +154,7 @@ tree_init(void)
 }
 
 static void
-tree_render(void)
+tree_render(int new_year)
 {
 	int level, light;
 	int term_width, term_height;
@@ -167,11 +183,11 @@ tree_render(void)
 
 	y += 2;
 	term_set_cursor_position((term_width - strlen("MERRY CHRISTMAS") + 2) / 2, y);
-	printf("%s", "MERRY CHRISTMAS");
+	printf("MERRY CHRISTMAS");
 
 	y++;
-	term_set_cursor_position((term_width - strlen("And lots of CODE in 2023") + 1) / 2, y);
-	printf("%s", "And lots of CODE in 2023");
+	term_set_cursor_position((term_width - strlen("And lots of CODE in YYYY") + 1) / 2, y);
+	printf("And lots of CODE in %d", new_year);
 }
 
 static void
@@ -202,6 +218,8 @@ version(void)
 int
 main(int argc, char **argv)
 {
+	int new_year;
+
 	while (++argv, --argc > 0) {
 		if ((*argv)[0] == '-' && (*argv)[1] != '\0' && (*argv)[2] == '\0') {
 			switch ((*argv)[1]) {
@@ -214,6 +232,8 @@ main(int argc, char **argv)
 		}
 	}
 
+	new_year = get_new_year();
+
 	tree_init();
 	term_set_echo_flag(0);
 	term_hide_cursor();
@@ -224,7 +244,7 @@ main(int argc, char **argv)
 
 	while (1) {
 		tree_update();
-		tree_render();
+		tree_render(new_year);
 		fflush(stdout);
 		usleep(1000 * 100);
 	}
