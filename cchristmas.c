@@ -242,7 +242,7 @@ main(int argc, char **argv)
 	set_signal_handler(SIGINT, h_sigint);
 	set_signal_handler(SIGWINCH, h_winch);
 
-	while (1) {
+	for (;;) {
 		tree_update();
 		tree_render(new_year);
 		fflush(stdout);
