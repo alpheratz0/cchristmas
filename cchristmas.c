@@ -29,10 +29,10 @@
 #include <sys/ioctl.h>
 #include <string.h>
 
-static int  tree_height;
-static int  tree_width;
+static int tree_height;
+static int tree_width;
 static int *tree_light_colors;
-static int  message_color;
+static int message_color;
 
 static void
 die(const char *fmt, ...)
@@ -78,7 +78,7 @@ term_get_size(int *width, int *height)
 static inline void
 term_set_cursor_position(int x, int y)
 {
-	printf("\033[%d;%dH", y+1, x+1);
+	printf("\033[%d;%dH", y + 1, x + 1);
 }
 
 static inline void
@@ -167,8 +167,8 @@ tree_render(int new_year)
 	for (level = 0; level < (tree_height - 2); ++level, ++y) {
 		for (light = 0; light < (1 + level * 2); ++light) {
 			term_set_cursor_position(term_width / 2 - level + light, y);
-			term_set_foreground_color(tree_light_colors[level*level+light] + 32);
-			printf(tree_light_colors[level*level+light] > 0 ? "o" : "*");
+			term_set_foreground_color(tree_light_colors[level * level + light] + 32);
+			printf(tree_light_colors[level * level + light] > 0 ? "o" : "*");
 		}
 	}
 
