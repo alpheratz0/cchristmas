@@ -21,7 +21,8 @@ install: all
 
 dist: clean
 	mkdir -p cchristmas-$(VERSION)
-	cp -R COPYING config.mk Makefile README cchristmas.1 cchristmas.c cchristmas-$(VERSION)
+	cp -R COPYING config.mk Makefile README cchristmas.1 \
+		cchristmas.c cchristmas-$(VERSION)
 	tar -cf cchristmas-$(VERSION).tar cchristmas-$(VERSION)
 	gzip cchristmas-$(VERSION).tar
 	rm -rf cchristmas-$(VERSION)
