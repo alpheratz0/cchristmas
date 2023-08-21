@@ -208,7 +208,12 @@ tree_render(int new_year)
 static void
 tree_update(void)
 {
-	message_color = 31 + (rand()) % 7;
+	int new_message_color;
+
+	while ((new_message_color = 31 + (rand()) % 7) == message_color)
+		new_message_color = 31 + (rand()) % 7;
+
+	message_color = new_message_color;
 
 	tree_light_colors[rand() % ((tree_height - 2) * (tree_height - 2))] = 0;
 	tree_light_colors[rand() % ((tree_height - 2) * (tree_height - 2))] = 0;
