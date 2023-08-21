@@ -12,6 +12,23 @@
 	dedication to be an overt act of relinquishment in perpetuity of all
 	present and future rights to this software under copyright law.
 
+
+	                    *
+	                   ***
+	                  *****
+	                 *******
+	                *********
+	               **********o
+	              *************
+	             ***************
+	            *****************
+	           *******************
+	                   mWm
+	                   mWm
+
+	             MERRY CHRISTMAS
+	        And lots of CODE in 2024
+
 */
 
 #define _XOPEN_SOURCE 500
